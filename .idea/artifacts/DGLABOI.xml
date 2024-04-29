@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="DGLABOI">
+    <output-path>$PROJECT_DIR$/out/artifacts/DGLABOI</output-path>
+    <root id="archive" name="DGLABOI.jar">
+      <element id="module-output" name="DGLAB-OI" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/depend/MossLib.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/ultreia/bluecove/2.1.1/bluecove-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
