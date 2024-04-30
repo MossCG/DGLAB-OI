@@ -1,6 +1,7 @@
 package org.mossmc.mosscg.DGLABOI;
 
 import org.mossmc.mosscg.DGLABOI.Bluetooth.BlueToothConnect;
+import org.mossmc.mosscg.DGLABOI.Bluetooth.BlueToothDevice;
 import org.mossmc.mosscg.DGLABOI.Command.CommandReload;
 import org.mossmc.mosscg.DGLABOI.Http.HttpAPI;
 import org.mossmc.mosscg.MossLib.Command.CommandManager;
@@ -33,9 +34,9 @@ public class Main {
             System.exit(0);
         }
         //搜索设备（蓝牙）
-        //BlueToothConnect.search();
+        BlueToothDevice.findDevice();
         //WebAPI控制
-        HttpAPI.initAPI();
+        //HttpAPI.initAPI();
         //命令行
         CommandManager.initCommand(logger,true);
         CommandManager.registerCommand(new CommandReload());

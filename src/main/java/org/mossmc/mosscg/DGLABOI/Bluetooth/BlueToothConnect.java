@@ -3,6 +3,7 @@ package org.mossmc.mosscg.DGLABOI.Bluetooth;
 import org.mossmc.mosscg.DGLABOI.BasicInfo;
 
 import javax.bluetooth.*;
+import javax.bluetooth.UUID;
 import java.util.*;
 
 public class BlueToothConnect {
@@ -13,33 +14,53 @@ public class BlueToothConnect {
     public static void search() {
         try {
             LocalDevice ld = LocalDevice.getLocalDevice();
-            BasicInfo.logger.sendInfo("本机蓝牙名称:" + ld.getFriendlyName());
-            findDevices();
-            //findServices();
+            BasicInfo.logger.sendInfo("本机蓝牙名称:" + ld.getFriendlyName() + " | " );
+            while (true) {
+                findDevices(DiscoveryAgent.LIAC);
+                //findServices();
+            }
         } catch (Exception e) {
             BasicInfo.logger.sendException(e);
         }
     }
 
-    public static void findDevices() throws Exception {
+    public static void findDevices(int agent) throws Exception {
         BasicInfo.logger.sendInfo("正在搜索设备喵~");
         deviceDiscovered.clear();
-        LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC,listener);
+        LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(agent,listener);
         synchronized (inquiryCompletedEvent) {
             inquiryCompletedEvent.wait();
-            LocalDevice.getLocalDevice().getDiscoveryAgent().cancelInquiry(listener);
+            //LocalDevice.getLocalDevice().getDiscoveryAgent().cancelInquiry(listener);
             BasicInfo.logger.sendInfo("搜索设备完成喵~");
         }
     }
 
     public static void findServices() throws Exception{
         BasicInfo.logger.sendInfo("正在搜索服务喵~");
-        serviceDiscovered.clear();
-        //LocalDevice.getLocalDevice().getDiscoveryAgent().startInquiry(DiscoveryAgent.GIAC,listener);
-        synchronized (serviceSearchCompletedEvent) {
-            serviceSearchCompletedEvent.wait();
-           // LocalDevice.getLocalDevice().getDiscoveryAgent().cancelInquiry(listener);
-            BasicInfo.logger.sendInfo("搜索服务完成喵~");
+        deviceDiscovered.forEach(BlueToothConnect::searchService);
+        BasicInfo.logger.sendInfo("搜索服务完成喵~");
+    }
+
+    public static void searchService(RemoteDevice btDevice){
+        UUID[] searchUuidSet = new UUID[] {
+                new UUID(0x1500),
+                new UUID(0x1504),
+                new UUID(0x1505),
+                new UUID(0x1506)
+        };
+
+        int[] attrIDs =  new int[] {
+                0x0180A,0x180B // Service name
+        };
+
+        synchronized(serviceSearchCompletedEvent) {
+            try {
+                System.out.println("search services on " + btDevice.getBluetoothAddress() + " " + btDevice.getFriendlyName(false));
+                LocalDevice.getLocalDevice().getDiscoveryAgent().searchServices(attrIDs, searchUuidSet, btDevice, listener);
+                serviceSearchCompletedEvent.wait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -52,7 +73,8 @@ public class BlueToothConnect {
         public void deviceDiscovered(RemoteDevice remoteDevice, DeviceClass deviceClass) {
             deviceDiscovered.add(remoteDevice);
             try {
-                BasicInfo.logger.sendInfo("发现蓝牙设备："+remoteDevice.getFriendlyName(false));
+                BasicInfo.logger.sendInfo("发现蓝牙设备："+remoteDevice.getBluetoothAddress()+"/"+remoteDevice.getFriendlyName(false));
+                //searchService(remoteDevice);
             } catch (Exception e) {
                 BasicInfo.logger.sendException(e);
             }

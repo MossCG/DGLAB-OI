@@ -23,6 +23,13 @@
             <systemPath>${project.basedir}/depend/MossLib.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>com.zsmartsystems</groupId>
+            <artifactId>bluegiga</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/depend/com.zsmartsystems.bluetooth.bluegiga-1.0.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>io.ultreia</groupId>
             <artifactId>bluecove</artifactId>
             <version>2.1.1</version>
@@ -31,6 +38,16 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sputnikdev</groupId>
+            <artifactId>bluetooth-manager</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sputnikdev</groupId>
+            <artifactId>bluetooth-manager-bluegiga</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 </project>
