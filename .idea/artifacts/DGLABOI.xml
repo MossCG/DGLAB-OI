@@ -4,19 +4,6 @@
     <root id="archive" name="DGLABOI.jar">
       <element id="module-output" name="DGLAB-OI" />
       <element id="extracted-dir" path="$PROJECT_DIR$/depend/MossLib.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/ultreia/bluecove/2.1.1/bluecove-2.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/18.0/guava-18.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/sputnikdev/bluetooth-manager/1.5.3/bluetooth-manager-1.5.3.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/sputnikdev/bluetooth-utils/1.14/bluetooth-utils-1.14.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/sputnikdev/bluetooth-manager-tinyb/1.4-SNAPSHOT/bluetooth-manager-tinyb-1.4-SNAPSHOT.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/sputnikdev/bluetooth-manager-bluegiga/1.2.3/bluetooth-manager-bluegiga-1.2.3.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/depend/com.zsmartsystems.bluetooth.bluegiga-1.0.0-SNAPSHOT.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/neuronrobotics/nrjavaserial/3.13.0/nrjavaserial-3.13.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.2.2/jna-4.2.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/java/dev/jna/jna-platform/4.2.2/jna-platform-4.2.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-net/commons-net/3.3/commons-net-3.3.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

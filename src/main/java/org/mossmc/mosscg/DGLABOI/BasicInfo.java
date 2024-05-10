@@ -9,4 +9,9 @@ public class BasicInfo {
 
     public static ObjectLogger logger;
     public static ObjectConfig config;
+
+    public static boolean debug = false;
+    public static void sendDebug(String message) {
+        if (debug) logger.sendAPI(message);
+    }
 }
