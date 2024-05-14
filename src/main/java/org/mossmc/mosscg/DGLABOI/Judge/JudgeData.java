@@ -53,6 +53,7 @@ public class JudgeData {
         try {
             //如果你想要注册你们学校的OJ
             //写好OJ类之后在这里加上注册就行
+            registerJudge("CF","Codeforces","org.mossmc.mosscg.DGLABOI.Judge.OJ.CF");
             registerJudge("ZUCC","浙大城院OJ","org.mossmc.mosscg.DGLABOI.Judge.OJ.ZUCC");
         } catch (Exception e) {
             BasicInfo.logger.sendException(e);
@@ -76,7 +77,7 @@ public class JudgeData {
             Class<?> classOJ = Class.forName(judgeClassMap.get(OJSelect));
             classOJ.getMethod("update").invoke(classOJ.newInstance());
         }catch (Exception e) {
-            BasicInfo.logger.sendException(e);
+            BasicInfo.logger.sendWarn("数据更新失败："+e.getMessage());
         }
     }
 }
