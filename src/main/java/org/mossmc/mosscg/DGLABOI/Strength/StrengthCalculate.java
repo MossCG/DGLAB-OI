@@ -1,10 +1,24 @@
-package org.mossmc.mosscg.DGLABOI.Grade;
+package org.mossmc.mosscg.DGLABOI.Strength;
 
 import org.mossmc.mosscg.DGLABOI.BasicInfo;
+import org.mossmc.mosscg.DGLABOI.Bluetooth.BluetoothStrength;
 import org.mossmc.mosscg.DGLABOI.Judge.JudgeData;
 
-public class GradeCalculate {
-    public static int getGradeValue() {
+public class StrengthCalculate {
+    @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
+    public static void updateThread() {
+        while (true) {
+            try {
+                JudgeData.dataUpdate();
+                int value = getStrengthValue();
+                if (BluetoothStrength.target!=value) BluetoothStrength.updateStrength(value);
+                Thread.sleep(1000L*5);
+            }catch (Exception e) {
+                BasicInfo.logger.sendException(e);
+            }
+        }
+    }
+    public static int getStrengthValue() {
         //基础值
         double value = BasicInfo.config.getDouble("basicValue");
         //未开始则返回基础值

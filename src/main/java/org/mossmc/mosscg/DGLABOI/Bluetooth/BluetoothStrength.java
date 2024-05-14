@@ -7,8 +7,12 @@ public class BluetoothStrength {
     public static int now  = 0;
     public static void updateStrength(int newStrength) {
         if (newStrength==target) return;
+        if (target < newStrength) {
+            BasicInfo.logger.sendInfo("杂鱼杂鱼~强度提高了哦~新的强度是："+newStrength);
+        } else {
+            BasicInfo.logger.sendInfo("还不错嘛~强度降低了哦~新的强度是："+newStrength);
+        }
         target = newStrength;
-        BasicInfo.logger.sendInfo("强度更新了哦~新的强度是："+newStrength);
     }
     @SuppressWarnings({"BusyWait", "InfiniteLoopStatement"})
     public static void smoothUpdate() {
