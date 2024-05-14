@@ -43,6 +43,7 @@ public class CF extends ObjectOJ{
     public void update() {
         JSONObject reply = getReturnData(apiAddress+"/contest.standings?contestId="+contestID+"&handles="+account,null);
         assert reply != null;
+        if (reply.getString("status").equals("FAILED") && reply.getString("comment").contains("not started")) return;
         JSONObject contestData = reply.getJSONObject("result").getJSONObject("contest");
         JudgeData.updateData("start",0,contestData.getString("phase").equals("CODING"));
 
@@ -79,7 +80,13 @@ public class CF extends ObjectOJ{
                 writer.close();
             }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+            BufferedReader reader;
+            if (connection.getResponseCode() == 200) {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+            } else {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8));
+            }
+
             String inputLine;
             StringBuilder readInfo = new StringBuilder();
             while ((inputLine = reader.readLine()) != null) readInfo.append(inputLine);
@@ -87,7 +94,7 @@ public class CF extends ObjectOJ{
 
             return JSONObject.parseObject(readInfo.toString());
         } catch (Exception e) {
-            BasicInfo.logger.sendException(e);
+            BasicInfo.logger.sendWarn("连接API失败："+e.getMessage());
             return null;
         }
     }

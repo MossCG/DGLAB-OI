@@ -38,8 +38,8 @@ public class Main {
         }
         BasicInfo.debug = BasicInfo.config.getBoolean("debug");
         //Http初始化
-        System.setProperty("sun.net.client.defaultConnectTimeout", "3000");
-        System.setProperty("sun.net.client.defaultReadTimeout", "3000");
+        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
         System.setProperty("http.keepAlive", "false");
         //OI模块
         logger.sendInfo("正在注册OJ数据......");

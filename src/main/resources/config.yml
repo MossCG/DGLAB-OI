@@ -12,6 +12,7 @@ enable: false
 #以下为强度设置
 #强度将会自动舍取为int值并同步到郊狼
 #记得注意上下限哦~
+#最最最下面有建议参考数值哦~
 
 #强度上限
 #if (value>limit) v=limit;
@@ -42,3 +43,20 @@ rankValue: 1.0
 #----------------------------------
 #是否显示调试信息
 debug: false
+
+#----------------------------------
+#数值建议/参考上限100
+
+#校赛/周赛，人数<100
+#limit: 100.0
+#basicValue: 10.0
+#WAValue: 5.0
+#ACValue: -10.0
+#rankValue: 1.0
+
+#Codeforces，人数>10000，预估排名<10000
+#limit: 100.0
+#basicValue: 10.0
+#WAValue: 2.0
+#ACValue: -5.0
+#rankValue: 0.01
