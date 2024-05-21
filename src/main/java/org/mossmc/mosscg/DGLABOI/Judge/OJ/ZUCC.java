@@ -43,7 +43,7 @@ public class ZUCC extends ObjectOJ {
 
         assert session != null;
         assert token != null;
-        reply = getReturnData(apiAddress+"/contests?page=1&page_size=100&order=%7B%22id%22:%22desc%22%7D",null,false,false);
+        reply = getReturnData(apiAddress+"/contests?&page=1&page_size=100&order=%7B%22id%22:%22desc%22%7D",null,false,false);
         assert reply != null;
         JSONArray array = reply.getJSONArray("data");
         int count = 0;
@@ -66,7 +66,7 @@ public class ZUCC extends ObjectOJ {
         JSONObject data = reply.getJSONObject("data");
         JudgeData.updateData("start",0,data.getString("state").equals("RUNNING"));
 
-        reply = getReturnData(apiAddress+"/contest/"+contestID+"/status?page_size=100",null,false,false);
+        reply = getReturnData(apiAddress+"/contest/"+contestID+"/status?username="+account+"&page_size=100",null,false,false);
         assert reply != null;
         data = reply.getJSONObject("data");
         JSONArray commits = data.getJSONArray("data");
@@ -141,7 +141,7 @@ public class ZUCC extends ObjectOJ {
             }
             return JSONObject.parseObject(readInfo.toString());
         } catch (Exception e) {
-            BasicInfo.logger.sendException(e);
+            BasicInfo.logger.sendWarn("连接API失败："+e.getMessage());
             return null;
         }
     }
