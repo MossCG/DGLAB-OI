@@ -43,7 +43,7 @@ public class ZUCC extends ObjectOJ {
 
         assert session != null;
         assert token != null;
-        reply = getReturnData(apiAddress+"/contests?&page=1&page_size=100&order=%7B%22id%22:%22desc%22%7D",null,false,false);
+        reply = getReturnData(apiAddress+"/contests?page=1&page_size=100&order=%7B%22id%22:%22desc%22%7D",null,false,false);
         assert reply != null;
         JSONArray array = reply.getJSONArray("data");
         int count = 0;
